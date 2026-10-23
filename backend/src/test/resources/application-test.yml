@@ -1,0 +1,13 @@
+# Integration tests run against a REAL PostgreSQL database (deadlock_simulator_test), never H2.
+spring:
+  datasource:
+    url: ${TEST_DB_URL:jdbc:postgresql://localhost:5432/deadlock_simulator_test}
+    username: ${DB_USERNAME:user1}
+    password: ${DB_PASSWORD:user1}
+  flyway:
+    clean-disabled: false
+app:
+  jwt:
+    # Test-only key (base64 of a random 32-byte value), not used anywhere else.
+    secret: dGVzdC1vbmx5LWtleS1kZWFkbG9jay1zaW11bGF0b3ItMzJieXRlcyE=
+    expiration-minutes: 30

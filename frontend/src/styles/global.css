@@ -1,0 +1,75 @@
+:root { color-scheme: only light; }
+html { -webkit-text-size-adjust: 100%; }
+html, body, #root { min-height: 100%; }
+body {
+  margin: 0;
+  background: var(--app-background);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  font-size: 15px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Editorial display type: Fraunces at its "soft" optical settings, never for small labels. */
+.display {
+  font-family: var(--font-display);
+  font-variation-settings: "SOFT" 50, "WONK" 0;
+  font-weight: 380;
+  letter-spacing: -0.015em;
+  line-height: 1.08;
+}
+.display-italic { font-style: italic; font-variation-settings: "SOFT" 100, "WONK" 1; }
+
+/* Small uppercase section label (used sparingly). */
+.kicker {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-cocoa);
+}
+
+.num { font-variant-numeric: tabular-nums lining-nums; }
+
+/* Scroll wrappers contain absolutely positioned descendants (e.g. sr-only labels), so they never widen the page. */
+.overflow-x-auto, .overflow-auto { position: relative; }
+
+/* Fine hairline rule */
+.rule { border-color: var(--color-rule); }
+
+/* Text link with a measured underline */
+.link {
+  color: var(--color-terracotta-deep);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  text-decoration-color: color-mix(in srgb, var(--color-terracotta) 45%, transparent);
+  transition: text-decoration-color 0.2s;
+}
+.link:hover { text-decoration-color: var(--color-terracotta-deep); }
+
+:focus-visible { outline: 2px solid var(--color-terracotta); outline-offset: 2px; border-radius: 3px; }
+::selection { background: var(--color-terracotta-wash); color: var(--color-ink); }
+
+input[type="number"]::-webkit-inner-spin-button { opacity: 0.4; }
+
+/* Subtle paper grain for the graph canvas only (not page-wide). */
+.paper-canvas {
+  background-color: var(--color-sheet);
+  background-image: radial-gradient(rgb(120 104 88 / 0.10) 0.7px, transparent 0.7px);
+  background-size: 18px 18px;
+}
+
+/* React Flow — warm controls */
+.react-flow { --xy-background-color: transparent; }
+.react-flow__controls { box-shadow: var(--shadow-paper) !important; border: 1px solid var(--color-rule); border-radius: 6px; overflow: hidden; }
+.react-flow__controls-button { background: var(--color-sheet) !important; border-bottom: 1px solid var(--color-rule-soft) !important; fill: var(--color-cocoa) !important; width: 28px !important; height: 28px !important; }
+.react-flow__controls-button:hover { background: var(--color-paper) !important; fill: var(--color-ink) !important; }
+.react-flow__attribution { background: transparent !important; }
+.react-flow__attribution a { color: var(--color-taupe) !important; font-size: 10px; }
+.react-flow__edge-textbg { fill: var(--color-sheet); }
+
+/* Scrollbars */
+* { scrollbar-width: thin; scrollbar-color: var(--color-rule) transparent; }

@@ -1,0 +1,25 @@
+# Local development infrastructure for the Self-Healing Deadlock Simulator.
+# The credentials below are LOCAL DEVELOPMENT ONLY (user1/user1).
+services:
+  postgres:
+    image: postgres:16
+    container_name: deadlock-simulator-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${DB_USERNAME:-user1}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-user1}
+      POSTGRES_DB: deadlock_simulator
+    ports:
+      - "${DB_PORT:-5432}:5432"
+    volumes:
+      - deadlock_pgdata:/var/lib/postgresql/data
+      # Creates the separate deadlock_simulator_test database used by integration tests.
+      - ./docker/postgres-init:/docker-entrypoint-initdb.d:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d deadlock_simulator"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+
+volumes:
+  deadlock_pgdata:

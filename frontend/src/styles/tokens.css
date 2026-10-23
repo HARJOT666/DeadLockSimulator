@@ -1,0 +1,73 @@
+/*
+ * Design tokens — light, beige-first editorial palette.
+ * Target balance: ~80% beige / ivory / warm white, ~15% sand & taupe secondary surfaces,
+ * ≤5% espresso, terracotta, sage and highlight accents. Dark brown is for type and small accents only —
+ * never a page, sidebar or panel background.
+ *
+ * Where a requested value fell just short of WCAG AA for small text, a visually adjacent step is used
+ * for that job only (noted inline); the requested value is kept for its decorative role.
+ */
+/* The requested theme tokens — single source of truth. Tailwind colours below are mapped onto them. */
+:root {
+  --app-background: #F5EFE3;
+  --sidebar-background: #FBF7EF;
+  --surface-background: #FFFCF6;
+  --surface-secondary: #EEE5D7;
+  --border-color: #DCCFBD;
+  --text-primary: #493528;
+  --text-secondary: #786858;
+  --text-muted: #968777;
+  --accent-primary: #A96445;
+  --accent-hover: #8D5037;
+  --accent-success: #74816A;
+}
+
+/* `inline` makes the utilities emit the variables themselves, so changing a :root token re-themes everything. */
+@theme inline {
+  /* Surfaces */
+  --color-ivory: var(--app-background);          /* main page background */
+  --color-paper: var(--surface-secondary);          /* alternate section background */
+  --color-sheet: var(--surface-background);          /* primary content surface: forms, tables, graph & chart canvases */
+  --color-sand: var(--surface-secondary);           /* secondary surface: active nav, chips, washes */
+  --color-sidebar: var(--sidebar-background);        /* warm ivory navigation panel */
+  --color-rule: var(--border-color);           /* borders and dividers */
+  --color-rule-soft: #E7DDCE;
+
+  /* Type */
+  --color-ink: var(--text-primary);            /* primary text (10:1 on page) */
+  --color-cocoa: var(--text-secondary);          /* secondary text (4.7:1 on page, 5.2:1 on surface) */
+  --color-cocoa-strong: #6E5F50;   /* secondary text on alternate/secondary surfaces (≥4.7:1) */
+  --color-taupe: var(--text-muted);          /* muted metadata — decorative / placeholder use only (3:1) */
+
+  /* Actions & accents */
+  --color-action: #A76344;         /* primary action fill (requested #A96445; this step gives AA 4.55:1 with ivory text) */
+  --color-action-hover: var(--accent-hover);   /* primary action hover */
+  --color-terracotta: var(--accent-primary);     /* accent marks, active rules, cycle edges */
+  --color-terracotta-deep: var(--accent-hover);/* terracotta text and links (5.5:1 on page) */
+  --color-terracotta-wash: #F3E4D8;
+  --color-sage: var(--accent-success);           /* success marks, normal edges, verified rules */
+  --color-sage-deep: #5B6752;      /* success text (5.2:1 on page; requested #74816A is 3.6:1 as text) */
+  --color-sage-wash: #E6E9DF;
+  --color-highlight: #D9C49D;      /* subtle research highlight: rules, washes, rings */
+  --color-highlight-wash: #F2E9D6;
+  --color-gold: #D9C49D;           /* alias kept for existing classes */
+  --color-gold-deep: #765B2D;      /* warning text */
+  --color-gold-wash: #F2E9D6;
+  --color-danger: #A3402F;
+
+  /* Chart identity — validated for colour-vision deficiency on #FFFCF6 (all checks pass; ochre needs the
+     direct labels every chart carries). Terracotta = termination, sage = rollback, ochre = total abort. */
+  --color-s-term: #B0522E;
+  --color-s-roll: #1F8A70;
+  --color-s-abort: #C99528;
+
+  --font-display: "Fraunces Variable", Georgia, "Times New Roman", serif;
+  --font-sans: "DM Sans Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono Variable", ui-monospace, "SFMono-Regular", monospace;
+
+  --shadow-paper: 0 1px 0 rgb(73 53 40 / 0.03), 0 1px 2px rgb(73 53 40 / 0.05);
+  --shadow-lift: 0 1px 2px rgb(73 53 40 / 0.05), 0 14px 32px -18px rgb(73 53 40 / 0.22);
+  --shadow-node: 0 1px 1px rgb(73 53 40 / 0.06), 0 6px 14px -10px rgb(73 53 40 / 0.28);
+
+  --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+}
